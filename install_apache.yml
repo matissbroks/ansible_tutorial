@@ -20,5 +20,3 @@
     apt:
       name: libapache2-mod-php
       state: latest
-
-# To run: `ansible-playbook --ask-become-pass install_apache.yml`

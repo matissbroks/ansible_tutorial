@@ -13,5 +13,3 @@
     apt:
       name: libapache2-mod-php
       state: absent
-
-# To run: `ansible-playbook --ask-become-pass remove_apache.yml`
