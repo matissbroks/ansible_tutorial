@@ -1,0 +1,24 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  # Would run `sudo apt update`
+  - name: Update repository index
+    apt:
+      update_cache: yes
+
+  # Installig apache2 server. Will run like `sudp apt install apache2`
+  - name: Install apache2 package
+    apt:
+      name: apache2
+      state: latest
+
+  # Installing PHP for apache2 server `sudo apt install libapache2-mod-php`
+  - name: Add PHP support for apache
+    apt:
+      name: libapache2-mod-php
+      state: latest
+
+# To run: `ansible-playbook --ask-become-pass install_apache.yml`
