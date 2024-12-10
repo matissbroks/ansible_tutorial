@@ -48,3 +48,13 @@ Commands used in episodes
 ---
 
 ### EP: 07
+
+- If have host with no `apt` module this would fail `ansible-playbook --ask-become-pass install_apache.yml`
+
+- After editing playbook, and adding `when` statement
+
+- Get specific data from all server data `ansible all -m gather_facts --limit <HOST_IP_ADDRES> | grep ansible_distribution`
+
+- On CentOS machie started httpd service and opened port 80
+    - Starting service `sudo systemctl start httpd`
+    - Openeing port 80 `sudo firewall-cmd --add-port=80/tcp`
