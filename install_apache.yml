@@ -8,15 +8,38 @@
   - name: Update repository index
     apt:
       update_cache: yes
+    when: ansible_distribution == "Ubuntu"  # Used when targeting one OS
+    # when: ansible_distribution in ["Debian", "Ubuntu"]  # When targeting multiple OS
+    # when: ansible_distribution == "CentOS" and ansible_distribution_version == "8.2" # Targeting specific OS and its version
 
   # Installig apache2 server. Will run like `sudp apt install apache2`
   - name: Install apache2 package
     apt:
       name: apache2
       state: latest
+    when: ansible_distribution == "Ubuntu"
 
   # Installing PHP for apache2 server `sudo apt install libapache2-mod-php`
   - name: Add PHP support for apache
     apt:
       name: libapache2-mod-php
       state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  # For CentOS
+  - name: Update repository index
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: Install apache2 package
+    dnf:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Add PHP support for apache
+    dnf:
+      name: php
+      state: latest
+    when: ansible_distribution == "CentOS"
